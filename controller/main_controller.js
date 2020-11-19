@@ -93,3 +93,16 @@ module.exports.listProperty = function(req, res){
         console.log()
     })
 }
+
+module.exports.allProperties = function(req, res){
+    Property.find({}, function(err, properties){
+        if (err){
+            return res.json(402, {
+                message: 'Properies not found'
+            })
+        }
+        return res.json(200, {
+            properties: properties
+        })
+    })
+}
