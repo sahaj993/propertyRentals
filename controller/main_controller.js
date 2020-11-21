@@ -2,12 +2,6 @@ const Landlord = require('../models/landlord');
 const Property = require('../models/property');
 const jwt = require('jsonwebtoken');
 
-module.exports.home = function(req, res){
-    return res.json(200, {
-        message: 'Server Start'
-    })
-}
-
 module.exports.create = function(req, res){
     Landlord.findOne({email: req.body.email}, function(err, user){
         if (!user){
