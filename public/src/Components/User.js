@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import '../App.css';
+import axios from "axios";
 
 class User extends Component {
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit = {(e) => login(e)}>
         <div className="form-group">
             <label for="exampleInputEmail1">Name</label>
             <input
@@ -42,6 +43,22 @@ class User extends Component {
       </div>
     );
   }
+}
+
+function login(e) {
+    e.preventDefault();
+    let request = {
+        name: document.getElementById('exampleInputName1').value,
+        email: document.getElementById('exampleInputEmail1').value,
+        password: document.getElementById('exampleInputPassword1').value,
+    }
+    console.log(request);
+    axios.post('http://localhost:8000/register', function(err, user){
+        if (err){
+            console.log('err',err);
+        }
+        console.log("login successful");
+    })
 }
 
 export default User;

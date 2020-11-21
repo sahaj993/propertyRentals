@@ -1,14 +1,23 @@
 const express = require('express');
 // const cookieParser = require('cookie-parser');
 const app = express();
+const cors = require('cors');
 const port = 8000;
 const db = require('./config/mongoose');
 const passport = require('passport');
+const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const passportJWT = require('./config/passport-jwt-strategy');
 
 app.use(express.urlencoded());
+
+app.use(
+    cors({
+        origin: "http://localhost:3000",
+        credentials: true
+    })
+)
 
 // app.use(cookieParser);
 
